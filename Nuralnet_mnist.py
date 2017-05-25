@@ -6,6 +6,7 @@ import pickle
 from dataset.mnist import load_mnist
 from PIL import Image
 
+
 def get_data():
     (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, flatten=True, one_hot_label=False)
     return x_test, t_test
@@ -37,4 +38,9 @@ accuracy_cnt = 0
 
 for i in range(0, len(x), batch_size):
     x_batch = x[i:i+batch_size]
-    y_batch = predict
+    y_batch = predict(network, x_batch)
+    p = np.argmax(y_batch, axis=1)
+    accuracy_cnt += np.sum(p == t[i:i+batch_size])
+
+print("Accuracy:" + str(float(accuracy_cnt) / len(x)))
+
