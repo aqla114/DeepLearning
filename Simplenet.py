@@ -1,12 +1,14 @@
+# coding: utf-8
 import sys, os
-sys.path.append(os.pardir)
+sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
 import numpy as np
 from Function import Softmax, CrossEntropyError
 from Function import NumericalGradient
 
+
 class simpleNet:
     def __init__(self):
-        self.W = np.random.randn(2, 3) #�K�E�X���z�ŏ�����
+        self.W = np.random.randn(2,3)
 
     def predict(self, x):
         return np.dot(x, self.W)
